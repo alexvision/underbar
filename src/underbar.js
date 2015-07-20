@@ -91,10 +91,39 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-  };
+
+  // Better Approach, not working 
+  //   _.filter(collection, function() { 
+  //     return !test.apply(this, arguements);
+  //   });
+
+// Remove the below if the better solution is worked out
+    var output = [];
+    _.each(collection, function(item){
+      if (test(item) === false) {
+        output.push(item);
+      };
+    });
+    return output
+
+   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var uniques = [];
+
+    _.each(array, function(item){
+      var i = 0;
+      while(i < uniques.length){
+        if(uniques[i] !== item) {
+          uniques.push(item);
+          break;
+        }else { 
+          i++;
+        }
+      }
+    });
+    return uniques;
   };
 
 
