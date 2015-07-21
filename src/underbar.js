@@ -92,37 +92,46 @@
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
 
-  // Better Approach, not working 
-  //   _.filter(collection, function() { 
-  //     return !test.apply(this, arguements);
-  //   });
-
-// Remove the below if the better solution is worked out
-    var output = [];
-    _.each(collection, function(item){
-      if (test(item) === false) {
-        output.push(item);
-      };
+    return _.filter(collection, function(item) { 
+      return !test(item);
     });
-    return output
 
-   };
+// Old code which repeats _.filter
+   //  var output = [];
+   //  _.each(collection, function(item){
+   //    if (test(item) === false) {
+   //      output.push(item);
+   //    };
+   //  });
+   //  return output
+
+ };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
-    var uniques = [];
+    var uniques = []; //[1,2,3,3,7,1,2]
+    return _.filter(array, _.indexOf(array, item));
+    // _.filter(array, function(item){
+    //   if(uniques.length === 0){
+    //     true;
+    //   } else {
+    //     for(var i = 0; i < uniques.length; i++){
 
-    _.each(array, function(item){
-      var i = 0;
-      while(i < uniques.length){
-        if(uniques[i] !== item) {
-          uniques.push(item);
-          break;
-        }else { 
-          i++;
-        }
-      }
-    });
+    //     }
+    //   }
+      
+    // });
+    // _.each(array, function(item){
+    //   var i = 0;
+    //   while(i < uniques.length){
+    //     if(uniques[i] !== item) {
+    //       uniques.push(item);
+    //       break;
+    //     }else { 
+    //       i++;
+    //     }
+    //   }
+    // });
     return uniques;
   };
 
