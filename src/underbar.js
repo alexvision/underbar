@@ -95,43 +95,16 @@
     return _.filter(collection, function(item) { 
       return !test(item);
     });
-
-// Old code which repeats _.filter
-   //  var output = [];
-   //  _.each(collection, function(item){
-   //    if (test(item) === false) {
-   //      output.push(item);
-   //    };
-   //  });
-   //  return output
-
  };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
-    var uniques = []; //[1,2,3,3,7,1,2]
-    return _.filter(array, _.indexOf(array, item));
-    // _.filter(array, function(item){
-    //   if(uniques.length === 0){
-    //     true;
-    //   } else {
-    //     for(var i = 0; i < uniques.length; i++){
-
-    //     }
-    //   }
-      
-    // });
-    // _.each(array, function(item){
-    //   var i = 0;
-    //   while(i < uniques.length){
-    //     if(uniques[i] !== item) {
-    //       uniques.push(item);
-    //       break;
-    //     }else { 
-    //       i++;
-    //     }
-    //   }
-    // });
+    var uniques = [];  
+    _.filter(array, function(item) {
+     if(_.indexOf(uniques, item) < 0){
+      uniques.push(item);
+    }
+  });
     return uniques;
   };
 
