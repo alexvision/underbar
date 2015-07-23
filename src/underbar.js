@@ -203,7 +203,15 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-
+    if(iterator === undefined) {
+      iterator = _.identity;
+    }
+    return _.reduce(collection, function(runningTotal, item){
+      if(!iterator(item)){
+        return runningTotal;
+      }
+      return true;
+    }, false);
   };
 
 
@@ -226,13 +234,15 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    //var args = Array.slice(arguments);
+    var args = Array.slice(arguments);
     var firstObj = {};
     for(var key in obj){
       if (key === 0) {
         firstObj = obj[key];
+      } else { 
+
       }
-      obj[0].push(obj[key + 1])
+      
     }
     console.log(obj[0]);
     return obj[0];
