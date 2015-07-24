@@ -318,6 +318,14 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    //stores the arguments after the function (by calling 'slice') 
+    //to pass to the delayed function call(using apply)
+    var args = Array.prototype.slice.call(arguments, 2);
+    //uses setTimeout to delay the call by the "wait" parameter
+    return setTimeout(function(){
+      //returns the intial function passed with the correct arguments
+      return func.apply(this, args);
+    }, wait)
   };
 
 
@@ -333,8 +341,11 @@
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
     var shuffled = [];
+    //generates a random value between 0 and the array length
     var random = function() {return Math.floor(Math.random() * (array.length - 0)); };
      _.each(array, function(item){
+        //places the item in at a random location, moves the values around it rather
+        //than deleting. Not ideal as distribution is poor
         shuffled.splice(random(), 0, item); 
     });
 
