@@ -248,6 +248,19 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    //for every object passed as an arguement to the _.extend function
+    _.each(arguments, function(item){
+      //itterate over every key-value pair  
+      _.each(item, function(value, key){
+        //if the key doesn't exist
+        if(obj[key] === undefined){
+          //add the key-value pair to obj    
+          obj[key] = value;  
+        }
+        
+      });
+    });
+    return obj;
   };
 
 
