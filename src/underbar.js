@@ -234,18 +234,15 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    var args = Array.slice(arguments);
-    var firstObj = {};
-    for(var key in obj){
-      if (key === 0) {
-        firstObj = obj[key];
-      } else { 
-
-      }
-      
-    }
-    console.log(obj[0]);
-    return obj[0];
+    //for every object passed as an arguement to the _.extend function
+    _.each(arguments, function(item){
+      //itterate over every key-value pair  
+      _.each(item, function(value, key){
+        //add the key-value pair to obj    
+        obj[key] = value;
+      });
+    });
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
